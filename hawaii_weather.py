@@ -95,8 +95,6 @@ def tobs():
 
     return jsonify(previous_year_temp)
 
-
-
 # Query for Min temperature, the average temperature, and the max temperature given store os start-end range.
 @app.route("/api/v1.0/<start>")
 def weather(start):
@@ -104,7 +102,6 @@ def weather(start):
     sel = [func.min(Measurement.tobs), func.avg(Measurement.tobs),func.max(Measurement.tobs)]
 
     return jsonify(session.query(*sel).filter(func.strftime("%y-%m-%d", Measurement.date) == start).all())
-
 
 # Define main behavior
 if __name__ == "__main__":
